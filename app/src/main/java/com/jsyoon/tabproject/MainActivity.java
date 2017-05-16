@@ -3,6 +3,7 @@ package com.jsyoon.tabproject;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -43,16 +44,47 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+        tabLayout.addTab(tabLayout.newTab());
+        tabLayout.addTab(tabLayout.newTab());
+        tabLayout.addTab(tabLayout.newTab());
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        /* Tab ICON 사용시
+        tabLayout.getTabAt(i).setIcon(R.drawable.iconId);
+        */
+
+        // Create the adapter that will return a fragment for each of the three
+        // primary sections of the activity.
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+
+        mViewPager.setAdapter(mSectionsPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);
+
+        /*
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        */
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -115,8 +148,31 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.tab_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+
+            View rootView;
+            TextView textView;
+
+            int tabnum = getArguments().getInt(ARG_SECTION_NUMBER);
+
+            switch (tabnum) {
+                default:
+                    rootView = inflater.inflate(R.layout.tab1_fragment, container, false);
+                    textView = (TextView) rootView.findViewById(R.id.textView1);
+                    break;
+
+                case 2:
+                    rootView = inflater.inflate(R.layout.tab2_fragment, container, false);
+                    textView = (TextView) rootView.findViewById(R.id.textView2);
+                    break;
+
+                case 3:
+                    rootView = inflater.inflate(R.layout.tab3_fragment, container, false);
+                    textView = (TextView) rootView.findViewById(R.id.textView3);
+                    break;
+            }
+
+            //View rootView = inflater.inflate(R.layout.tab1_fragment, container, false);
+            //TextView textView = (TextView) rootView.findViewById(R.id.textView);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
@@ -127,9 +183,11 @@ public class MainActivity extends AppCompatActivity {
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
+        int mNumOfTabs;
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        public SectionsPagerAdapter(FragmentManager fm, int NumOfTabs) {
             super(fm);
+            this.mNumOfTabs = NumOfTabs;
         }
 
         @Override
