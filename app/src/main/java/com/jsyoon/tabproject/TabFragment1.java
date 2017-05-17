@@ -29,7 +29,7 @@ public class TabFragment1 extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.tab_fragment1, container, false);
-        btn = (Button) view.findViewById(R.id.button);
+        btn = (Button) view.findViewById(R.id.button_edm);
         btn.setOnClickListener(this);
         return view;
     }
@@ -54,8 +54,8 @@ public class TabFragment1 extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.button:
-                mCallback.showToast("Hello Fragment 1");
+            case R.id.button_edm:
+                mCallback.showToast("Pressed EDM Button");
                 break;
         }
     }

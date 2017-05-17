@@ -25,9 +25,10 @@ public class MainActivity extends AppCompatActivity implements IFragmentToActivi
         setSupportActionBar(toolbar);
 
         ArrayList<String> tabs = new ArrayList<>();
-        tabs.add("Tab 1");
-        tabs.add("Tab 2");
-        tabs.add("Tab 3");
+        tabs.add(getString(R.string.tab1_title));
+        tabs.add(getString(R.string.tab2_title));
+        tabs.add(getString(R.string.tab3_title));
+
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
