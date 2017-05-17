@@ -6,10 +6,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
-public class TabFragment1 extends Fragment {
+public class TabFragment1 extends Fragment implements View.OnClickListener{
     private IFragmentToActivity mCallback;
+    private Button btn;
 
     public TabFragment1() {
         // Required empty public constructor
@@ -26,7 +28,10 @@ public class TabFragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.tab_fragment1, container, false);
+        View view =  inflater.inflate(R.layout.tab_fragment1, container, false);
+        btn = (Button) view.findViewById(R.id.button);
+        btn.setOnClickListener(this);
+        return view;
     }
 
     @Override
@@ -44,5 +49,14 @@ public class TabFragment1 extends Fragment {
     public void onDetach() {
         mCallback = null;
         super.onDetach();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button:
+                mCallback.showToast("Hello Fragment 1");
+                break;
+        }
     }
 }
