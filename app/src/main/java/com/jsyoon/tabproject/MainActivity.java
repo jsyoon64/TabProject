@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements IFragmentToActivi
         tabs.add(getString(R.string.tab1_title));
         tabs.add(getString(R.string.tab2_title));
         tabs.add(getString(R.string.tab3_title));
+        tabs.add(getString(R.string.tab4_title));
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
