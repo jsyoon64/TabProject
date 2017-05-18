@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 
@@ -21,10 +22,13 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public PagerAdapter(FragmentManager fm, ArrayList<String> tabHeader) {
         super(fm);
         this.mTabHeader = tabHeader;
+        Log.d("PA","PagerAdapter");
     }
 
     @Override
     public Fragment getItem(int position) {
+
+        Log.d("PA","getItem" + position );
 
         switch (position) {
             case 0:
@@ -48,6 +52,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Object instantiateItem(final ViewGroup container, final int position) {
+        Log.d("PA","instantiateItem, pos is " + position );
         final Fragment fragment = (Fragment) super.instantiateItem(container, position);
         instantiatedFragments.put(position, new WeakReference<>(fragment));
         return fragment;
@@ -55,6 +60,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public void destroyItem(final ViewGroup container, final int position, final Object object) {
+        Log.d("PA","destroyItem, pos is " + position );
         instantiatedFragments.remove(position);
         super.destroyItem(container, position, object);
     }
@@ -62,9 +68,13 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     @Nullable
     public Fragment getFragment(final int position) {
         final WeakReference<Fragment> wr = instantiatedFragments.get(position);
+
+
         if (wr != null) {
+            Log.d("PA","getFragment, wr:!null,pos is " + position );
             return wr.get();
         } else {
+            Log.d("PA","getFragment, wr:null,pos is " + position );
             return null;
         }
     }

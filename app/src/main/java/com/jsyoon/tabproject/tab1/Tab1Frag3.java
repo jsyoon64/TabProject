@@ -15,6 +15,7 @@ import com.jsyoon.tabproject.R;
  * A simple {@link Fragment} subclass.
  */
 public class Tab1Frag3 extends Fragment {
+    private static final String TAG = "Tab1Frag3";
     int sel_page;
 
     public Tab1Frag3() { }
@@ -23,6 +24,7 @@ public class Tab1Frag3 extends Fragment {
 public void onCreate(Bundle savedInstanceState){
     super.onCreate(savedInstanceState);
     sel_page = getArguments() != null ? getArguments().getInt("num") : 0;
+    Log.d(TAG,"onCreate, arg is " +sel_page);
 }
 
     @Override
@@ -33,7 +35,7 @@ public void onCreate(Bundle savedInstanceState){
 
         TextView tv = (TextView) view.findViewById(R.id.text);
         tv.setText("Fragment #" + sel_page);
-        //Log.d("Tab1Frag3 onCreateView",String.valueOf(sel_page));
+        Log.d(TAG,"onCreateView page is " + sel_page);
         return view;
     }
 }

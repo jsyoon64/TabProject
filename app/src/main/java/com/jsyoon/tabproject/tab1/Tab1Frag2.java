@@ -15,15 +15,16 @@ import com.jsyoon.tabproject.R;
  * A simple {@link Fragment} subclass.
  */
 public class Tab1Frag2 extends Fragment {
+    private static final String TAG = "Tab1Frag2";
     int sel_page;
 
-    public Tab1Frag2() {
-    }
+    public Tab1Frag2() {  }
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         sel_page = getArguments() != null ? getArguments().getInt("num") : 0;
+        Log.d(TAG,"onCreate, arg is " +sel_page);
     }
 
     @Override
@@ -34,7 +35,7 @@ public class Tab1Frag2 extends Fragment {
 
         TextView tv = (TextView)view.findViewById(R.id.text);
         tv.setText("Fragment #" + sel_page);
-        //Log.d("Tab1Frag2 onCreateView",String.valueOf(sel_page));
+        Log.d(TAG,"onCreateView page is " + sel_page);
         return view;
     }
 }

@@ -3,6 +3,7 @@ package com.jsyoon.tabproject.tab1;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.jsyoon.tabproject.R;
  * A simple {@link Fragment} subclass.
  */
 public class Tab1Frag4 extends Fragment {
+    private static final String TAG = "Tab1Frag4";
     int sel_page;
 
     public Tab1Frag4() {
@@ -23,6 +25,7 @@ public class Tab1Frag4 extends Fragment {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         sel_page = getArguments() != null ? getArguments().getInt("num") : 0;
+        Log.d(TAG,"onCreate, arg is " +sel_page);
     }
 
     @Override
@@ -33,7 +36,7 @@ public class Tab1Frag4 extends Fragment {
 
         TextView tv = (TextView) view.findViewById(R.id.text);
         tv.setText("Fragment #" + sel_page);
-
+        Log.d(TAG,"onCreateView page is " + sel_page);
         return view;
     }
 }
