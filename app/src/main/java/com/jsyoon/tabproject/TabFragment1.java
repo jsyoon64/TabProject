@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.jsyoon.tabproject.tab1.Tab1Frag4;
 import com.jsyoon.tabproject.tab1.Tab1Frag5;
 
 public class TabFragment1 extends Fragment implements View.OnClickListener{
+    private static final String TAG = "TabFragment1";
     static final int NUM_ITEMS = 5;
 
     MyAdapter mAdapter;
@@ -40,6 +42,7 @@ public class TabFragment1 extends Fragment implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
+        Log.d(TAG,"onCreate");
     }
 
     @Override
@@ -48,7 +51,7 @@ public class TabFragment1 extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.tab_fragment1, container, false);
 
-        mAdapter = new MyAdapter(getFragmentManager());
+        mAdapter = new MyAdapter(getChildFragmentManager());
         mPager = (ViewPager)view.findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
 
@@ -62,6 +65,8 @@ public class TabFragment1 extends Fragment implements View.OnClickListener{
         btn_ppg.setOnClickListener(this);
         btn_temp = (Button) view.findViewById(R.id.button_temp);
         btn_temp.setOnClickListener(this);
+
+        Log.d(TAG,"onCreateView");
         return view;
     }
 
@@ -74,6 +79,7 @@ public class TabFragment1 extends Fragment implements View.OnClickListener{
             throw new ClassCastException(context.toString()
                     + " must implement IFragmentToActivity");
         }
+        Log.d(TAG,"onAttach");
     }
 
     @Override
@@ -122,6 +128,7 @@ public class TabFragment1 extends Fragment implements View.OnClickListener{
         @Override
         public Fragment getItem(int position) {
             // Supply num input as an argument.
+            Log.d(TAG,"getItem, position is " + position);
             Bundle args = new Bundle();
             args.putInt("num", position);
 
