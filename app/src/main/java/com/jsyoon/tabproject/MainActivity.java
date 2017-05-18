@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements IFragmentToActivi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.d(TAG,"Main onCreateView");
+        Log.d(TAG, "Main onCreateView");
 
         setContentView(R.layout.activity_main);
 
@@ -37,6 +37,10 @@ public class MainActivity extends AppCompatActivity implements IFragmentToActivi
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+    /* Tab ICON 사용시
+        tabLayout.getTabAt(i).setIcon(R.drawable.iconId);
+     */
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.container);
         adapter = new PagerAdapter(getSupportFragmentManager(), tabs);
