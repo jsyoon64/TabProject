@@ -28,7 +28,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        Log.d("PA","getItem" + position );
+        Log.d("PA","getItem, pos is " + position );
 
         switch (position) {
             case 0:
