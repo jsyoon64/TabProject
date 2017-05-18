@@ -11,6 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.jsyoon.tabproject.tab1.Tab1Frag1;
+import com.jsyoon.tabproject.tab1.Tab1Frag2;
+import com.jsyoon.tabproject.tab1.Tab1Frag3;
+import com.jsyoon.tabproject.tab1.Tab1Frag4;
+import com.jsyoon.tabproject.tab1.Tab1Frag5;
+
 public class TabFragment1 extends Fragment implements View.OnClickListener{
     static final int NUM_ITEMS = 5;
 
@@ -115,16 +121,23 @@ public class TabFragment1 extends Fragment implements View.OnClickListener{
 
         @Override
         public Fragment getItem(int position) {
-            Tab1Frag1 tab1frag1 = new Tab1Frag1();
-
-            // for test
             // Supply num input as an argument.
             Bundle args = new Bundle();
             args.putInt("num", position);
-            tab1frag1.setArguments(args);
-            //
 
-            return tab1frag1;
+            switch(position){
+                default:
+                case 0: Tab1Frag1 tab1frag1 = new Tab1Frag1(); tab1frag1.setArguments(args);
+                    return tab1frag1;
+                case 1: Tab1Frag2 tab1frag2 = new Tab1Frag2(); tab1frag2.setArguments(args);
+                    return tab1frag2;
+                case 2: Tab1Frag3 tab1frag3 = new Tab1Frag3(); tab1frag3.setArguments(args);
+                    return tab1frag3;
+                case 3: Tab1Frag4 tab1frag4 = new Tab1Frag4(); tab1frag4.setArguments(args);
+                    return tab1frag4;
+                case 4: Tab1Frag5 tab1frag5 = new Tab1Frag5(); tab1frag5.setArguments(args);
+                    return tab1frag5;
+            }
         }
     }
 
