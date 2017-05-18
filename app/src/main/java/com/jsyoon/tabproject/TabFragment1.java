@@ -93,23 +93,23 @@ public class TabFragment1 extends Fragment implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.button_edm:
                 mPager.setCurrentItem(0);
-                mCallback.showToast("Pressed EDM Button");
+                //mCallback.showToast("Pressed EDM Button");
                 break;
             case R.id.button_eeg:
                 mPager.setCurrentItem(1);
-                mCallback.showToast("Pressed EEG Button");
+                //mCallback.showToast("Pressed EEG Button");
                 break;
             case R.id.button_gyro:
                 mPager.setCurrentItem(2);
-                mCallback.showToast("Pressed gyro Button");
+                //mCallback.showToast("Pressed gyro Button");
                 break;
             case R.id.button_ppg:
                 mPager.setCurrentItem(3);
-                mCallback.showToast("Pressed PPG Button");
+                //mCallback.showToast("Pressed PPG Button");
                 break;
             case R.id.button_temp:
                 mPager.setCurrentItem(4);
-                mCallback.showToast("Pressed temp Button");
+                //mCallback.showToast("Pressed temp Button");
                 break;
         }
     }
