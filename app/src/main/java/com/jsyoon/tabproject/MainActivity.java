@@ -1,6 +1,9 @@
 package com.jsyoon.tabproject;
 
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.support.v4.view.ViewPager;
@@ -11,11 +14,14 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements IFragmentToActivity {
 
-    private PagerAdapter adapter;
+    private ViewPagerAdapter adapter;
     private TabLayout tabLayout;
+    private ViewPager viewPager;
+
     private static final String TAG = "MainActivity";
 
     @Override
@@ -29,24 +35,57 @@ public class MainActivity extends AppCompatActivity implements IFragmentToActivi
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ArrayList<String> tabs = new ArrayList<>();
-        tabs.add(getString(R.string.tab1_title));
-        tabs.add(getString(R.string.tab2_title));
-        tabs.add(getString(R.string.tab3_title));
-        tabs.add(getString(R.string.tab4_title));
+        viewPager = (ViewPager) findViewById(R.id.container);
+        setupViewPager(viewPager);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.container);
-        adapter = new PagerAdapter(getSupportFragmentManager(), tabs);
-        viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
+        setupTabIcons();
+    }
+
+    private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(R.drawable.edm);
-     /* Tab ICON 사용시
-        tabLayout.getTabAt(i).setIcon(R.drawable.iconId);
-     */
+        tabLayout.getTabAt(1).setIcon(R.drawable.edm);
+        tabLayout.getTabAt(2).setIcon(R.drawable.edm);
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFrag(new TabFragment1(), getString(R.string.tab1_title));
+        adapter.addFrag(new TabFragment2(), getString(R.string.tab2_title));
+        adapter.addFrag(new TabFragment3(), getString(R.string.tab3_title));
+        viewPager.setAdapter(adapter);
+    }
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFrag(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
 
     @Override

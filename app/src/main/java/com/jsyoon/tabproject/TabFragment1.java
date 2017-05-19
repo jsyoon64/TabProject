@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -18,11 +19,13 @@ import com.jsyoon.tabproject.tab1.Tab1Frag3;
 import com.jsyoon.tabproject.tab1.Tab1Frag4;
 import com.jsyoon.tabproject.tab1.Tab1Frag5;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TabFragment1 extends Fragment implements View.OnClickListener{
     private static final String TAG = "TabFragment1";
     static final int NUM_ITEMS = 5;
 
-    MyAdapter mAdapter;
     ViewPager mPager;
     View tab1view;
 
@@ -51,9 +54,8 @@ public class TabFragment1 extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.tab_fragment1, container, false);
 
-        mAdapter = new MyAdapter(getChildFragmentManager());
         mPager = (ViewPager)view.findViewById(R.id.pager);
-        mPager.setAdapter(mAdapter);
+        setupViewPager(mPager);
 
         btn_edm = (Button) view.findViewById(R.id.button_edm);
         btn_edm.setOnClickListener(this);
@@ -114,38 +116,41 @@ public class TabFragment1 extends Fragment implements View.OnClickListener{
         }
     }
 
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter2 adapter = new ViewPagerAdapter2(getChildFragmentManager());
+        adapter.addFrag(new Tab1Frag1());
+        adapter.addFrag(new Tab1Frag2());
+        adapter.addFrag(new Tab1Frag3());
+        adapter.addFrag(new Tab1Frag4());
+        adapter.addFrag(new Tab1Frag5());
+        viewPager.setAdapter(adapter);
+    }
 
-    public static class MyAdapter extends FragmentStatePagerAdapter {
-        public MyAdapter(FragmentManager fm) {
-            super(fm);
-        }
+    class ViewPagerAdapter2 extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
 
-        @Override
-        public int getCount() {
-            return NUM_ITEMS;
+        public ViewPagerAdapter2(FragmentManager manager) {
+            super(manager);
         }
 
         @Override
         public Fragment getItem(int position) {
-            // Supply num input as an argument.
             Log.d(TAG,"getItem, position is " + position);
             Bundle args = new Bundle();
             args.putInt("num", position);
 
-            switch(position){
-                default:
-                case 0: Tab1Frag1 tab1frag1 = new Tab1Frag1(); tab1frag1.setArguments(args);
-                    return tab1frag1;
-                case 1: Tab1Frag2 tab1frag2 = new Tab1Frag2(); tab1frag2.setArguments(args);
-                    return tab1frag2;
-                case 2: Tab1Frag3 tab1frag3 = new Tab1Frag3(); tab1frag3.setArguments(args);
-                    return tab1frag3;
-                case 3: Tab1Frag4 tab1frag4 = new Tab1Frag4(); tab1frag4.setArguments(args);
-                    return tab1frag4;
-                case 4: Tab1Frag5 tab1frag5 = new Tab1Frag5(); tab1frag5.setArguments(args);
-                    return tab1frag5;
-            }
+            Fragment fg = mFragmentList.get(position);
+            fg.setArguments(args);
+            return fg;
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFrag(Fragment fragment) {
+            mFragmentList.add(fragment);
         }
     }
-
 }
