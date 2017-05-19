@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -28,6 +29,10 @@ public class TabFragment3 extends Fragment implements View.OnClickListener{
         View view =  inflater.inflate(R.layout.tab_fragment3, container, false);
         btn = (Button) view.findViewById(R.id.button);
         btn.setOnClickListener(this);
+
+        TextView tv = (TextView)view.findViewById(R.id.text);
+        tv.setText(getString(R.string.section_format, 3));
+
         return view;
     }
 

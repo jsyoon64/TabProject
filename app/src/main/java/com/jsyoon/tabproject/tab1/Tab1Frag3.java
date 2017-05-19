@@ -34,7 +34,8 @@ public void onCreate(Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.tab1_frag3, container, false);
 
         TextView tv = (TextView) view.findViewById(R.id.text);
-        tv.setText("Fragment #" + sel_page);
+        //tv.setText("Fragment #" + sel_page);
+        tv.setText(getString(R.string.sub_section_format, getArguments().getInt("num")));
         Log.d(TAG,"onCreateView page is " + sel_page);
         return view;
     }

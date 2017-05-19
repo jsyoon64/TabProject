@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements IFragmentToActivi
         tabLayout.getTabAt(0).setIcon(R.drawable.edm);
         tabLayout.getTabAt(1).setIcon(R.drawable.edm);
         tabLayout.getTabAt(2).setIcon(R.drawable.edm);
+        tabLayout.getTabAt(3).setIcon(R.drawable.edm);
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements IFragmentToActivi
         adapter.addFrag(new TabFragment1(), getString(R.string.tab1_title));
         adapter.addFrag(new TabFragment2(), getString(R.string.tab2_title));
         adapter.addFrag(new TabFragment3(), getString(R.string.tab3_title));
+        adapter.addFrag(new TabFragDbg(), getString(R.string.tab4_title));
         viewPager.setAdapter(adapter);
     }
 
