@@ -38,14 +38,15 @@ public class MainActivity extends AppCompatActivity implements IFragmentToActivi
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-    /* Tab ICON 사용시
-        tabLayout.getTabAt(i).setIcon(R.drawable.iconId);
-     */
-
         final ViewPager viewPager = (ViewPager) findViewById(R.id.container);
         adapter = new PagerAdapter(getSupportFragmentManager(), tabs);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.edm);
+     /* Tab ICON 사용시
+        tabLayout.getTabAt(i).setIcon(R.drawable.iconId);
+     */
     }
 
     @Override
