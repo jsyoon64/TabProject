@@ -22,12 +22,9 @@ import com.jsyoon.tabproject.tab1.Tab1Frag5;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TabFragment1 extends Fragment implements View.OnClickListener{
+public class TabFragment1 extends Fragment implements View.OnClickListener {
     private static final String TAG = "TabFragment1";
-    static final int NUM_ITEMS = 5;
-
     ViewPager mPager;
-    View tab1view;
 
     private IFragmentToActivity mCallback;
     private Button btn_edm;
@@ -36,39 +33,41 @@ public class TabFragment1 extends Fragment implements View.OnClickListener{
     private Button btn_ppg;
     private Button btn_temp;
 
-    public TabFragment1() {
-        // Required empty public constructor
+    public TabFragment1() { // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
-        Log.d(TAG,"onCreate");
+        if (getArguments() != null) {  }
+        Log.d(TAG, "onCreate");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.tab_fragment1, container, false);
+        View view = inflater.inflate(R.layout.tab_fragment1, container, false);
 
-        mPager = (ViewPager)view.findViewById(R.id.pager);
+        mPager = (ViewPager) view.findViewById(R.id.pager);
         setupViewPager(mPager);
 
         btn_edm = (Button) view.findViewById(R.id.button_edm);
         btn_edm.setOnClickListener(this);
+
         btn_eeg = (Button) view.findViewById(R.id.button_eeg);
         btn_eeg.setOnClickListener(this);
+
         btn_gyro = (Button) view.findViewById(R.id.button_gyro);
         btn_gyro.setOnClickListener(this);
+
         btn_ppg = (Button) view.findViewById(R.id.button_ppg);
         btn_ppg.setOnClickListener(this);
+
         btn_temp = (Button) view.findViewById(R.id.button_temp);
         btn_temp.setOnClickListener(this);
 
-        Log.d(TAG,"onCreateView");
+        Log.d(TAG, "onCreateView");
         return view;
     }
 
@@ -81,7 +80,7 @@ public class TabFragment1 extends Fragment implements View.OnClickListener{
             throw new ClassCastException(context.toString()
                     + " must implement IFragmentToActivity");
         }
-        Log.d(TAG,"onAttach");
+        Log.d(TAG, "onAttach");
     }
 
     @Override
@@ -92,28 +91,26 @@ public class TabFragment1 extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        int frag_idx = 0;
         switch (v.getId()) {
+            default:
             case R.id.button_edm:
-                mPager.setCurrentItem(0);
-                //mCallback.showToast("Pressed EDM Button");
+                frag_idx = 0; //mCallback.showToast("Pressed EDM Button");
                 break;
             case R.id.button_eeg:
-                mPager.setCurrentItem(1);
-                //mCallback.showToast("Pressed EEG Button");
+                frag_idx = 1; //mCallback.showToast("Pressed EEG Button");
                 break;
             case R.id.button_gyro:
-                mPager.setCurrentItem(2);
-                //mCallback.showToast("Pressed gyro Button");
+                frag_idx = 2; //mCallback.showToast("Pressed gyro Button");
                 break;
             case R.id.button_ppg:
-                mPager.setCurrentItem(3);
-                //mCallback.showToast("Pressed PPG Button");
+                frag_idx = 3; //mCallback.showToast("Pressed PPG Button");
                 break;
             case R.id.button_temp:
-                mPager.setCurrentItem(4);
-                //mCallback.showToast("Pressed temp Button");
+                frag_idx = 4; //mCallback.showToast("Pressed temp Button");
                 break;
         }
+        mPager.setCurrentItem(frag_idx);
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -135,7 +132,7 @@ public class TabFragment1 extends Fragment implements View.OnClickListener{
 
         @Override
         public Fragment getItem(int position) {
-            Log.d(TAG,"getItem, position is " + position);
+            Log.d(TAG, "getItem, position is " + position);
             Bundle args = new Bundle();
             args.putInt("num", position);
 

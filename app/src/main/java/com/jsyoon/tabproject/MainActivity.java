@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements IFragmentToActivi
         viewPager = (ViewPager) findViewById(R.id.container);
         setupViewPager(viewPager);
 
+        // viewPager를 TAB 과 연결
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setupWithViewPager(viewPager);
