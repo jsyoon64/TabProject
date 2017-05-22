@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupMenu;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.jsyoon.tabproject.R;
@@ -21,7 +22,9 @@ public class Tab1Frag2 extends Fragment {
     private static final String TAG = "Tab1Frag2";
     int sel_page;
 
-    Button btn_run, btn_popmenu;
+    Button btn_run;
+    private Spinner mode_spinner;
+
     View frag2view;
 
     public Tab1Frag2() {  }
@@ -44,30 +47,20 @@ public class Tab1Frag2 extends Fragment {
         //tv.setText("Fragment #" + sel_page);
         tv.setText(getString(R.string.sub_section_format, getArguments().getInt("num")));
 
-        btn_run = (Button) frag2view.findViewById(R.id.btn_run);
-        btn_popmenu = (Button) frag2view.findViewById(R.id.btn_popmenu);
+        mode_spinner = (Spinner) frag2view.findViewById(R.id.modespinner);
 
-        btn_popmenu.setOnClickListener(new View.OnClickListener() {
+        btn_run = (Button) frag2view.findViewById(R.id.btn_run);
+        btn_run.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Creating the instance of PopupMenu
-                PopupMenu popup = new PopupMenu(frag2view.getContext(), btn_popmenu);
-                //Inflating the Popup using xml file
-                popup.getMenuInflater().inflate(R.menu.mode_popupmenu, popup.getMenu());
-
-                //registering popup with OnMenuItemClickListener
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        //Toast.makeText(MainActivity.this,"You Clicked : " + item.getTitle(),Toast.LENGTH_SHORT).show();
-                        btn_popmenu.setText(item.getTitle());
-                        return true;
-                    }
-                });
-
-                popup.show();//showing popup menu
+                /*
+                Toast.makeText(MyAndroidAppActivity.this,
+                        "OnClickListener : " +
+                                "\nSpinner 1 : "+ String.valueOf(mode_spinner.getSelectedItem()),
+                        Toast.LENGTH_SHORT).show();
+                */
             }
-        });//closing the setOnClickListener method
-
+        });
 
         Log.d(TAG,"onCreateView page is " + sel_page);
         return frag2view;

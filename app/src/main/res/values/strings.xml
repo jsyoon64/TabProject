@@ -18,4 +18,12 @@
     <string name="mode_standby">준비모드</string>
     <string name="mode_start">시작모드</string>
     <string name="mode_demo">데모모드</string>
+
+    <string name="mode_prompt">Choose a mode</string>
+    <string-array name="mode_arrays">
+        <item>대기모드</item>
+        <item>준비모드</item>
+        <item>시작모드</item>
+        <item>데모모드</item>
+    </string-array>
 </resources>

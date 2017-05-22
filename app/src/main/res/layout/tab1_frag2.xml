@@ -24,12 +24,13 @@
             android:layout_height="match_parent"
             android:text="동작모드" />
 
-        <Button
-            android:id="@+id/btn_popmenu"
+        <Spinner
+            android:id="@+id/modespinner"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            style="@style/Widget.AppCompat.Button.Colored" />
+            android:entries="@array/mode_arrays"
+            android:prompt="@string/mode_prompt"/>
 
         <Button
             android:id="@+id/btn_run"
