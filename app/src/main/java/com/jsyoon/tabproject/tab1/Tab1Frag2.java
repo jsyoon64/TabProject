@@ -9,9 +9,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.jsyoon.tabproject.R;
 
@@ -59,6 +61,17 @@ public class Tab1Frag2 extends Fragment {
                                 "\nSpinner 1 : "+ String.valueOf(mode_spinner.getSelectedItem()),
                         Toast.LENGTH_SHORT).show();
                 */
+            }
+        });
+
+        ToggleButton toggle = (ToggleButton) frag2view.findViewById(R.id.toggleButton);
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // The toggle is enabled
+                } else {
+                    // The toggle is disabled
+                }
             }
         });
 
