@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements IFragmentToActivi
 
         @Override
         public Fragment getItem(int position) {
+            Log.d(TAG, "getItem " + position);
             return mFragmentList.get(position);
         }
 

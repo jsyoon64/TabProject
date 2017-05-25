@@ -1,8 +1,10 @@
 package com.jsyoon.tabproject.tab1;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -23,6 +25,7 @@ import com.jsyoon.tabproject.R;
 public class Tab1Frag2 extends Fragment {
     private static final String TAG = "Tab1Frag2";
     int sel_page;
+    //SharedPreferences sharedPreferences;
 
     Button btn_run;
     private Spinner mode_spinner;
@@ -35,6 +38,8 @@ public class Tab1Frag2 extends Fragment {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         sel_page = getArguments() != null ? getArguments().getInt("num") : 0;
+
+        //sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
         Log.d(TAG,"onCreate, arg is " +sel_page);
     }
@@ -50,6 +55,7 @@ public class Tab1Frag2 extends Fragment {
         tv.setText(getString(R.string.sub_section_format, getArguments().getInt("num")));
 
         mode_spinner = (Spinner) frag2view.findViewById(R.id.modespinner);
+        //mode_spinner.setSelection(0);
 
         btn_run = (Button) frag2view.findViewById(R.id.btn_run);
         btn_run.setOnClickListener(new View.OnClickListener() {

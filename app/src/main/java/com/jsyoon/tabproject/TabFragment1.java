@@ -87,6 +87,7 @@ public class TabFragment1 extends Fragment implements View.OnClickListener {
     public void onDetach() {
         mCallback = null;
         super.onDetach();
+        Log.d(TAG, "onDetach");
     }
 
     @Override
