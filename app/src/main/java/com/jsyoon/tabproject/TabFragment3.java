@@ -11,8 +11,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class TabFragment3 extends Fragment{
+public class TabFragment3 extends Fragment {
     private static final String TAG = "TabFragment3";
+    private static View view = null;
+
     public TabFragment3() {
         // Required empty public constructor
     }
@@ -20,7 +22,10 @@ public class TabFragment3 extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.tab_fragment3, container, false);
+        if (view == null) {
+            view = inflater.inflate(R.layout.tab_fragment3, container, false);
+        }
+
         Log.d(TAG, "onCreateView");
         return view;
     }
