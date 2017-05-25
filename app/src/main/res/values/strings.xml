@@ -20,10 +20,19 @@
     <string name="mode_demo">데모모드</string>
 
     <string name="mode_prompt">Choose a mode</string>
-    <string-array name="mode_arrays">
-        <item>대기모드</item>
-        <item>준비모드</item>
-        <item>시작모드</item>
-        <item>데모모드</item>
-    </string-array>
+
+    <!-- preference를 위한 define -->
+    <string name="color_red">Red</string>
+    <string name="color_blue">Blue</string>
+    <string name="color_green">Green</string>
+
+    <color name="myRed">#F44336</color>
+    <color name="myBlue">#3F51B5</color>
+    <color name="myGreen">#4CAF50</color>
+
+    <!-- edit preference strings -->
+    <string name="text_size_key" translatable="false">size</string>
+    <string name="text_size_default" translatable="false">25</string>
+    <string name="text_size_label">Sample Text Size</string>
+
 </resources>
